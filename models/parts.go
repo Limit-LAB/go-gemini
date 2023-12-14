@@ -1,13 +1,30 @@
 package models
 
-type TextPart struct {
-	Text string `json:"text"`
+type Part struct {
+	Text       *string     `json:"text,omitempty"`
+	InlineData *InlineData `json:"inline_data,omitempty"`
 }
 
-func (_ TextPart) part() {}
+func (p Part) IsText() bool {
+	return p.Text != nil
+}
 
-type InlineDataPart struct {
-	InlineData InlineData `json:"inline_data"`
+func (p Part) IsInlineData() bool {
+	return p.InlineData != nil
+}
+
+func (p Part) GetText() string {
+	if p.Text == nil {
+		return ""
+	}
+	return *p.Text
+}
+
+func (p Part) GetInlineData() InlineData {
+	if p.InlineData == nil {
+		return InlineData{}
+	}
+	return *p.InlineData
 }
 
 type InlineData struct {
@@ -15,34 +32,25 @@ type InlineData struct {
 	Data     string `json:"data"`
 }
 
-func (_ InlineDataPart) part() {}
+type Parts []Part
 
-type IPart interface {
-	part()
-}
-
-var _ IPart = TextPart{}
-var _ IPart = InlineDataPart{}
-
-type Parts []IPart
-
-func NewParts(parts []IPart) Parts {
+func NewParts(parts []Part) Parts {
 	return parts
 }
 
-func (p Parts) AppendPart(part IPart) Parts {
+func (p Parts) AppendPart(part Part) Parts {
 	return append(p, part)
 }
 
-func NewTextPart(text string) TextPart {
-	return TextPart{
-		Text: text,
+func NewTextPart(text string) Part {
+	return Part{
+		Text: &text,
 	}
 }
 
-func NewInlineDataPart(mimeType, data string) InlineDataPart {
-	return InlineDataPart{
-		InlineData: InlineData{
+func NewInlineDataPart(mimeType, data string) Part {
+	return Part{
+		InlineData: &InlineData{
 			MimeType: mimeType,
 			Data:     data,
 		},

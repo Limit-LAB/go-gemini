@@ -24,12 +24,10 @@ func validateGenerateContentRequest(model models.GeminiModel, req models.Content
 		return nil
 	}
 	for _, c := range req.Parts {
-		switch c.(type) {
-		case models.TextPart:
+		if c.Text != nil {
 			continue
-		default:
-			return ErrTextOnlyModel
 		}
+		return ErrTextOnlyModel
 	}
 	return nil
 }

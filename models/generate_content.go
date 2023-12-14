@@ -1,7 +1,7 @@
 package models
 
 type GenerateContentRequest struct {
-	Contents         []Content
+	Contents         []Content         `json:"contents"`
 	GenerationConfig *GenerationConfig `json:"generationConfig"`
 }
 
@@ -28,7 +28,7 @@ func (r GenerateContentRequest) WithGenerationConfig(config GenerationConfig) Ge
 	return r
 }
 
-func (r GenerateContentRequest) AppendContent(role Role, parts []IPart) GenerateContentRequest {
+func (r GenerateContentRequest) AppendContent(role Role, parts []Part) GenerateContentRequest {
 	r.Contents = append(r.Contents, Content{
 		Role:  role,
 		Parts: parts,
