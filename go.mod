@@ -1,3 +1,3 @@
-module github.com/Limit-Lab/go-gemini
+module github.com/Limit-LAB/go-gemini
 
 go 1.21

@@ -1,6 +1,6 @@
 package gemini
 
-import "github.com/Limit-Lab/go-gemini/models"
+import "github.com/Limit-LAB/go-gemini/models"
 
 func (c *Client) GenerateContentStream(model models.GeminiModel, req models.GenerateContentRequest) (models.GenerateContentResponse, error) {
 	for _, content := range req.Contents {

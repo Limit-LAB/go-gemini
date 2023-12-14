@@ -2,7 +2,7 @@ package gemini
 
 import (
 	"errors"
-	"github.com/Limit-Lab/go-gemini/models"
+	"github.com/Limit-LAB/go-gemini/models"
 )
 
 func (c *Client) GenerateContent(model models.GeminiModel, req models.GenerateContentRequest) (models.GenerateContentResponse, error) {

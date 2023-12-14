@@ -1,7 +1,7 @@
 package gemini
 
 import (
-	"github.com/Limit-Lab/go-gemini/models"
+	"github.com/Limit-LAB/go-gemini/models"
 )
 
 func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPart) (models.EmbeddingValue, error) {
