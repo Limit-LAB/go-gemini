@@ -1,2 +1,8 @@
 .idea
 .vscode
+.env
+*.exe
+*.exe~
+*.dll
+*.so
+*_priv.go
