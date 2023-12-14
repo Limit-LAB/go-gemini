@@ -3,6 +3,7 @@ package gemini
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -23,15 +24,20 @@ func (c *Client) post(url string, body interface{}) (rst []byte, err error) {
 }
 
 func (c *Client) newReq(method string, url string, body any) (req *http.Request, err error) {
-	bs, err := json.Marshal(body)
-	if err != nil {
-		return
+	var reader io.Reader = nil
+	if body != nil {
+		var bs []byte
+		bs, err = json.Marshal(body)
+		if err != nil {
+			return
+		}
+		reader = bytes.NewReader(bs)
 	}
 
 	if c.auth == AuthByUrlQuery {
 		url = url + c.keyParam()
 	}
-	req, err = http.NewRequest(method, url, bytes.NewReader(bs))
+	req, err = http.NewRequest(method, url, reader)
 	if err != nil {
 		return
 	}
@@ -53,7 +59,7 @@ func (c *Client) handleReq(req *http.Request) (rst []byte, err error) {
 }
 
 func (c *Client) simpleReq(method string, url string, body any) (rst []byte, err error) {
-	req, err := c.newReq(method, url, nil)
+	req, err := c.newReq(method, url, body)
 	if err != nil {
 		return
 	}
@@ -71,4 +77,9 @@ func unjson[T any](bs []byte, e error) (rst T, err error) {
 	}
 	err = json.Unmarshal(bs, &rst)
 	return
+}
+
+func jout(v any) {
+	bs, _ := json.MarshalIndent(v, "", "  ")
+	fmt.Println(string(bs))
 }

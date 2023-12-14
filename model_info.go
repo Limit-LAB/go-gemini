@@ -8,7 +8,6 @@ func (c *Client) GetModelInfo(model models.GeminiModel) (models.ModelInfo, error
 }
 
 func (c *Client) GetModelList() ([]models.ModelInfo, error) {
-	url := c.url("models", "")
-	lst, err := unjson[models.ModelListResponse](c.get(url))
+	lst, err := unjson[models.ModelListResponse](c.get(c.baseUrl))
 	return lst.Models, err
 }
