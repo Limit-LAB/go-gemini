@@ -1,26 +1,23 @@
 package models
 
-type Role string
+type PromptFeedback struct {
+	SafetyRatings []SafetyRating `json:"safetyRatings"`
+}
 
-const (
-	RoleUser  Role = "USER"
-	RoleModel Role = "MODEL"
-)
+type SafetyRating struct {
+	Category    string `json:"category"`
+	Probability string `json:"probability"`
+}
 
-type MimeType string
+type Content struct {
+	Parts []IParts `json:"parts"`
+	Role  Role     `json:"role,omitempty"`
+}
 
-const (
-	MimeImagePng    MimeType = "image/png"
-	MimeImageJpeg   MimeType = "image/jpeg"
-	MimeImageWebP   MimeType = "image/webp"
-	MimeImageHEIC   MimeType = "image/heic"
-	MimeImageHEIF   MimeType = "image/heif"
-	MimeVideoMov    MimeType = "video/mov"
-	MimeVideoMpeg   MimeType = "video/mpeg"
-	MimeVideoMp4    MimeType = "video/mp4"
-	MimeVideoMpg    MimeType = "video/mpg"
-	MimeVideoAvi    MimeType = "video/avi"
-	MimeVideoWmv    MimeType = "video/wmv"
-	MimeVideoMpegps MimeType = "video/mpegps"
-	MimeVideoFlv    MimeType = "video/flv"
-)
+type GenerationConfig struct {
+	StopSequences   []string `json:"stopSequences"`
+	Temperature     float64  `json:"temperature"`
+	MaxOutputTokens int      `json:"maxOutputTokens"`
+	TopP            float64  `json:"topP"`
+	TopK            int      `json:"topK"`
+}
