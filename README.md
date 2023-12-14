@@ -15,8 +15,8 @@ package main
 
 import (
 	"fmt"
-	gemini "github.com/Limit-Lab/go-gemini"
-	"github.com/Limit-Lab/go-gemini/models"
+	gemini "github.com/Limit-LAB/go-gemini"
+	"github.com/Limit-LAB/go-gemini/models"
 )
 
 func main() {
