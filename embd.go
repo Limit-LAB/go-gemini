@@ -18,7 +18,7 @@ func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPar
 }
 
 func (c *Client) BatchEmbedContent(model models.EmbeddingModel, contents [][]models.IParts) ([]models.EmbeddingValue, error) {
-	url := c.url(string(model), "embedContent")
+	url := c.url(string(model), "batchEmbedContents")
 	req := models.BatchEmbeddingContentsRequest{}
 	modelStr := "models/" + string(model)
 	for _, content := range contents {
