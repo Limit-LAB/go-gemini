@@ -1,6 +1,6 @@
 package gemini
 
-import "github.com/Limit-Lab/gemini/models"
+import "github.com/Limit-Lab/go-gemini/models"
 
 func (c *Client) GetModelInfo(model models.GeminiModel) (models.ModelInfo, error) {
 	url := c.url(string(model), "")

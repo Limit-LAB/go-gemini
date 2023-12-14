@@ -1,6 +1,6 @@
 package gemini
 
-import "github.com/Limit-Lab/gemini/models"
+import "github.com/Limit-Lab/go-gemini/models"
 
 func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IParts) (models.EmbeddingValue, error) {
 	url := c.url(string(model), "embedContent")
