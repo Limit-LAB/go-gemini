@@ -1,6 +1,8 @@
 package gemini
 
-import "github.com/Limit-Lab/go-gemini/models"
+import (
+	"github.com/Limit-Lab/go-gemini/models"
+)
 
 func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPart) (models.EmbeddingValue, error) {
 	url := c.url(string(model), "embedContent")
@@ -10,11 +12,8 @@ func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPar
 			Parts: content,
 		},
 	}
-	resp, err := post[models.EmbeddingContentResponse](c.hc, url, req)
-	if err != nil {
-		return models.EmbeddingValue{}, err
-	}
-	return resp.Embedding, nil
+	rst, err := unjson[models.EmbeddingContentResponse](c.post(url, req))
+	return rst.Embedding, err
 }
 
 func (c *Client) BatchEmbedContent(model models.EmbeddingModel, contents [][]models.IPart) ([]models.EmbeddingValue, error) {
@@ -29,10 +28,6 @@ func (c *Client) BatchEmbedContent(model models.EmbeddingModel, contents [][]mod
 			},
 		})
 	}
-
-	resp, err := post[models.BatchEmbeddingContentsResponse](c.hc, url, req)
-	if err != nil {
-		return nil, err
-	}
-	return resp.Embeddings, nil
+	rst, err := unjson[models.BatchEmbeddingContentsResponse](c.post(url, req))
+	return rst.Embeddings, err
 }

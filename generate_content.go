@@ -13,7 +13,8 @@ func (c *Client) GenerateContent(model models.GeminiModel, req models.GenerateCo
 		}
 	}
 	url := c.url(string(model), "generateContent")
-	return post[models.GenerateContentResponse](c.hc, url, req)
+	rst, err := unjson[models.GenerateContentResponse](c.post(url, req))
+	return rst, err
 }
 
 var ErrTextOnlyModel = errors.New("this model only supports text input")
