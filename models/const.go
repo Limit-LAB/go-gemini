@@ -5,6 +5,7 @@ type Role string
 const (
 	RoleUser  Role = "USER"
 	RoleModel Role = "MODEL"
+	RoleNil   Role = ""
 )
 
 type MimeType string

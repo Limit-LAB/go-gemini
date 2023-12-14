@@ -24,7 +24,7 @@ func validateGenerateContentRequest(model models.GeminiModel, req models.Content
 	}
 	for _, c := range req.Parts {
 		switch c.(type) {
-		case models.TextParts:
+		case models.TextPart:
 			continue
 		default:
 			return ErrTextOnlyModel

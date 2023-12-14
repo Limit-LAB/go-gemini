@@ -2,7 +2,7 @@ package gemini
 
 import "github.com/Limit-Lab/go-gemini/models"
 
-func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IParts) (models.EmbeddingValue, error) {
+func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPart) (models.EmbeddingValue, error) {
 	url := c.url(string(model), "embedContent")
 	req := models.EmbeddingContentRequest{
 		Model: "models/" + string(model),
@@ -17,7 +17,7 @@ func (c *Client) EmbedContent(model models.EmbeddingModel, content []models.IPar
 	return resp.Embedding, nil
 }
 
-func (c *Client) BatchEmbedContent(model models.EmbeddingModel, contents [][]models.IParts) ([]models.EmbeddingValue, error) {
+func (c *Client) BatchEmbedContent(model models.EmbeddingModel, contents [][]models.IPart) ([]models.EmbeddingValue, error) {
 	url := c.url(string(model), "batchEmbedContents")
 	req := models.BatchEmbeddingContentsRequest{}
 	modelStr := "models/" + string(model)

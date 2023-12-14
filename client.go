@@ -16,6 +16,11 @@ func NewClient(key string) *Client {
 	}
 }
 
+func (c *Client) SetBaseUrl(url string) *Client {
+	c.baseUrl = url
+	return c
+}
+
 func (c *Client) keyParam() string {
 	return "?key=" + c.key
 }

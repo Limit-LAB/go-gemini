@@ -10,8 +10,8 @@ type SafetyRating struct {
 }
 
 type Content struct {
-	Parts []IParts `json:"parts"`
-	Role  Role     `json:"role,omitempty"`
+	Parts []IPart `json:"parts"`
+	Role  Role    `json:"role,omitempty"`
 }
 
 type GenerationConfig struct {

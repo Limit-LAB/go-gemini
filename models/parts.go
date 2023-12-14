@@ -1,23 +1,50 @@
 package models
 
-type TextParts struct {
+type TextPart struct {
 	Text string `json:"text"`
 }
 
-func (_ TextParts) parts() {}
+func (_ TextPart) part() {}
 
-type InlineDataParts struct {
-	InlineData struct {
-		MimeType string `json:"mime_type"`
-		Data     string `json:"data"`
-	} `json:"inline_data"`
+type InlineDataPart struct {
+	InlineData InlineData `json:"inline_data"`
 }
 
-func (_ InlineDataParts) parts() {}
-
-type IParts interface {
-	parts()
+type InlineData struct {
+	MimeType string `json:"mime_type"`
+	Data     string `json:"data"`
 }
 
-var _ IParts = TextParts{}
-var _ IParts = InlineDataParts{}
+func (_ InlineDataPart) part() {}
+
+type IPart interface {
+	part()
+}
+
+var _ IPart = TextPart{}
+var _ IPart = InlineDataPart{}
+
+type Parts []IPart
+
+func NewParts(parts []IPart) Parts {
+	return parts
+}
+
+func (p Parts) AppendPart(part IPart) Parts {
+	return append(p, part)
+}
+
+func NewTextPart(text string) TextPart {
+	return TextPart{
+		Text: text,
+	}
+}
+
+func NewInlineDataPart(mimeType, data string) InlineDataPart {
+	return InlineDataPart{
+		InlineData: InlineData{
+			MimeType: mimeType,
+			Data:     data,
+		},
+	}
+}
