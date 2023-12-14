@@ -7,7 +7,7 @@ func (c *Client) GetModelInfo(model models.GeminiModel) (models.ModelInfo, error
 	return get[models.ModelInfo](c.hc, url)
 }
 
-func (c *Client) GetModelList(model models.GeminiModel) ([]models.ModelInfo, error) {
+func (c *Client) GetModelList() ([]models.ModelInfo, error) {
 	url := c.url("models", "")
 	lst, err := get[models.ModelListResponse](c.hc, url)
 	if err != nil {
