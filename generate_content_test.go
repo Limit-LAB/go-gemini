@@ -19,7 +19,7 @@ func TestGenerateContent(t *testing.T) {
 			AppendContent(
 				models.RoleUser,
 				models.NewParts(nil).
-					AppendPart(models.NewTextPart("Hello, world!")),
+					AppendPart(models.NewTextPart("Hi! Use 3 words to describe yourself.")),
 			),
 	)
 
