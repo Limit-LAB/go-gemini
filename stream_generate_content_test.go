@@ -12,10 +12,10 @@ import (
 func TestGeminiStreamGenerateContent(t *testing.T) {
 	godotenv.Load()
 	key := os.Getenv("GEMINI")
-	req := models.NewGenerateContentRequest(nil).
+	req := models.NewGenerateContentRequest().
 		AppendContent(
 			models.RoleUser,
-			models.NewParts(nil).
+			models.NewParts().
 				AppendPart(models.NewTextPart("Hi! Use 20 words to describe yourself.")),
 		)
 	cli := gemini.NewClient(key)

@@ -17,7 +17,7 @@ type GenerateContentCandidate struct {
 	SafetyRatings []SafetyRating `json:"safetyRatings"`
 }
 
-func NewGenerateContentRequest(contents []Content) GenerateContentRequest {
+func NewGenerateContentRequest(contents ...Content) GenerateContentRequest {
 	return GenerateContentRequest{
 		Contents: contents,
 	}
@@ -26,6 +26,13 @@ func NewGenerateContentRequest(contents []Content) GenerateContentRequest {
 func (r GenerateContentRequest) WithGenerationConfig(config GenerationConfig) GenerateContentRequest {
 	r.GenerationConfig = &config
 	return r
+}
+
+func NewContent(role Role, parts ...Part) Content {
+	return Content{
+		Role:  role,
+		Parts: parts,
+	}
 }
 
 func (r GenerateContentRequest) AppendContent(role Role, parts []Part) GenerateContentRequest {

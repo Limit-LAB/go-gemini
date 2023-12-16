@@ -34,7 +34,7 @@ type InlineData struct {
 
 type Parts []Part
 
-func NewParts(parts []Part) Parts {
+func NewParts(parts ...Part) Parts {
 	return parts
 }
 

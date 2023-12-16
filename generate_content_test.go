@@ -15,12 +15,11 @@ func TestGenerateContent(t *testing.T) {
 	key := os.Getenv("GEMINI")
 	cli := gemini.NewClient(key)
 	rst, err := cli.GenerateContent(models.GeminiPro,
-		models.NewGenerateContentRequest(nil).
-			AppendContent(
-				models.RoleUser,
-				models.NewParts(nil).
-					AppendPart(models.NewTextPart("Hi! Use 3 words to describe yourself.")),
-			),
+		models.NewGenerateContentRequest(
+			models.NewContent(models.RoleUser, models.NewTextPart("你好")),
+			models.NewContent(models.RoleModel, models.NewTextPart("你好！很高兴为您服务。请问您需要什么帮助？")),
+			models.NewContent(models.RoleUser, models.NewTextPart("你是谁")),
+		),
 	)
 
 	if err != nil {
