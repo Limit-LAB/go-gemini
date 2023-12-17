@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"errors"
 	"github.com/Limit-LAB/go-gemini/models"
 	"io"
 	"strings"
@@ -24,6 +25,22 @@ func (c *Client) GenerateContentStream(model models.GeminiModel, req *models.Gen
 	resp, err := c.hc.Do(httpReq)
 	if err != nil {
 		return nil, err
+	}
+	if resp.StatusCode >= 300 {
+		defer resp.Body.Close()
+		var bs []byte
+		bs, err = io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+		var eResp []models.ErrorResponse
+		err = json.Unmarshal(bs, &eResp)
+		if err != nil {
+			return nil, err
+		}
+		if len(eResp) > 0 {
+			return nil, errors.New(eResp[0].Error.Message)
+		}
 	}
 	return newStreamScanner(resp.Body), nil
 }

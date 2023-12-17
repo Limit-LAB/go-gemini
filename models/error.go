@@ -7,5 +7,5 @@ type ErrorIn struct {
 }
 
 type ErrorResponse struct {
-	Error ErrorIn `json:"error"`
+	Error *ErrorIn `json:"error,omitempty"`
 }

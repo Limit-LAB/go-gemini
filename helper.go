@@ -3,7 +3,9 @@ package gemini
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/Limit-LAB/go-gemini/models"
 	"io"
 	"net/http"
 )
@@ -73,6 +75,12 @@ func (c *Client) get(url string) (rst []byte, err error) {
 func unjson[T any](bs []byte, e error) (rst T, err error) {
 	if e != nil {
 		err = e
+		return
+	}
+	var eResp models.ErrorResponse
+	err = json.Unmarshal(bs, &eResp)
+	if err == nil && eResp.Error != nil {
+		err = errors.New(eResp.Error.Message)
 		return
 	}
 	err = json.Unmarshal(bs, &rst)
