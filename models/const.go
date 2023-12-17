@@ -8,6 +8,17 @@ const (
 	RoleNil   Role = ""
 )
 
+func (r Role) ToOpenAIRole() string {
+	switch r {
+	case RoleUser:
+		return "user"
+	case RoleModel:
+		return "assistant"
+	default:
+		return ""
+	}
+}
+
 type MimeType string
 
 const (
