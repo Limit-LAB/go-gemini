@@ -23,6 +23,13 @@ func NewGenerateContentRequest(contents ...Content) GenerateContentRequest {
 	}
 }
 
+func NewGenerateContentRequestWithConfig(cfg *GenerationConfig, contents ...Content) GenerateContentRequest {
+	return GenerateContentRequest{
+		Contents:         contents,
+		GenerationConfig: cfg,
+	}
+}
+
 func (r GenerateContentRequest) WithGenerationConfig(config GenerationConfig) GenerateContentRequest {
 	r.GenerationConfig = &config
 	return r
