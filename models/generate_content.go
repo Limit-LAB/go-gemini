@@ -2,7 +2,7 @@ package models
 
 type GenerateContentRequest struct {
 	Contents         []Content         `json:"contents"`
-	GenerationConfig *GenerationConfig `json:"generationConfig"`
+	GenerationConfig *GenerationConfig `json:"generationConfig,omitempty"`
 }
 
 type GenerateContentResponse struct {

@@ -16,8 +16,8 @@ type Content struct {
 
 type GenerationConfig struct {
 	StopSequences   []string `json:"stopSequences"`
-	Temperature     float64  `json:"temperature"`
+	Temperature     float32  `json:"temperature"`
 	MaxOutputTokens int      `json:"maxOutputTokens"`
-	TopP            float64  `json:"topP"`
-	TopK            int      `json:"topK"`
+	TopP            float32  `json:"topP"`
+	TopK            float32  `json:"topK"`
 }

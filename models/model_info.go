@@ -12,7 +12,7 @@ type ModelInfo struct {
 	InputTokenLimit            int      `json:"inputTokenLimit"`
 	OutputTokenLimit           int      `json:"outputTokenLimit"`
 	SupportedGenerationMethods []string `json:"supportedGenerationMethods"`
-	Temperature                float64  `json:"temperature,omitempty"`
-	TopP                       float64  `json:"topP,omitempty"`
+	Temperature                float32  `json:"temperature,omitempty"`
+	TopP                       float32  `json:"topP,omitempty"`
 	TopK                       int      `json:"topK,omitempty"`
 }
