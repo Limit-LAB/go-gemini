@@ -42,7 +42,7 @@ func NewContent(role Role, parts ...Part) Content {
 	}
 }
 
-func (r GenerateContentRequest) AppendContent(role Role, parts []Part) GenerateContentRequest {
+func (r GenerateContentRequest) AppendContent(role Role, parts ...Part) GenerateContentRequest {
 	r.Contents = append(r.Contents, Content{
 		Role:  role,
 		Parts: parts,

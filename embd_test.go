@@ -14,7 +14,7 @@ func TestEmbd(t *testing.T) {
 	cli := gemini.NewClient(key)
 	emb, err := cli.EmbedContent(
 		models.Embedding001,
-		models.NewParts(nil).AppendPart(models.NewTextPart("Write a story about a magic backpack.")),
+		models.NewParts().AppendPart(models.NewTextPart("Write a story about a magic backpack.")),
 	)
 	if err != nil {
 		t.Fatal(err)

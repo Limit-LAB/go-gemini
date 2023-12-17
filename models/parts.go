@@ -38,8 +38,8 @@ func NewParts(parts ...Part) Parts {
 	return parts
 }
 
-func (p Parts) AppendPart(part Part) Parts {
-	return append(p, part)
+func (p Parts) AppendPart(part ...Part) Parts {
+	return append(p, part...)
 }
 
 func NewTextPart(text string) Part {

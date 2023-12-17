@@ -15,8 +15,7 @@ func TestGeminiStreamGenerateContent(t *testing.T) {
 	req := models.NewGenerateContentRequest().
 		AppendContent(
 			models.RoleUser,
-			models.NewParts().
-				AppendPart(models.NewTextPart("Hi! Use 20 words to describe yourself.")),
+			models.NewTextPart("Hi! Use 20 words to describe yourself."),
 		)
 	cli := gemini.NewClient(key)
 	gcs, err := cli.GenerateContentStream(models.GeminiPro, req)
