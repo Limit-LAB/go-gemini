@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func (c *Client) GenerateContentStream(model models.GeminiModel, req models.GenerateContentRequest) (*GenerateContentStreamer, error) {
+func (c *Client) GenerateContentStream(model models.GeminiModel, req *models.GenerateContentRequest) (*GenerateContentStreamer, error) {
 	for _, content := range req.Contents {
 		err := validateGenerateContentRequest(model, content)
 		if err != nil {

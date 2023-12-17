@@ -14,9 +14,7 @@ func TestCountToken(t *testing.T) {
 	cli := gemini.NewClient(key)
 	rst, err := cli.CountToken(models.GeminiPro, models.CountTokenRequest{
 		Contents: []models.Content{
-			{
-				Parts: models.NewParts().AppendPart(models.NewTextPart("Hello, world!")),
-			},
+			models.NewContent(models.RoleNil, models.NewTextPart("Hello, world!")),
 		},
 	})
 	if err != nil {

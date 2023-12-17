@@ -5,7 +5,7 @@ import (
 	"github.com/Limit-LAB/go-gemini/models"
 )
 
-func (c *Client) GenerateContent(model models.GeminiModel, req models.GenerateContentRequest) (models.GenerateContentResponse, error) {
+func (c *Client) GenerateContent(model models.GeminiModel, req *models.GenerateContentRequest) (models.GenerateContentResponse, error) {
 	for _, content := range req.Contents {
 		err := validateGenerateContentRequest(model, content)
 		if err != nil {
